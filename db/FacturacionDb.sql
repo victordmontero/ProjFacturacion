@@ -1,0 +1,43 @@
+CREATE TABLE Clientes(
+    ClienteId INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    Nombre VARCHAR(50) NOT NULL,
+    RNC CHAR(11) NOT NULL,
+    Direccion VARCHAR(50),
+    Telefono CHAR(13),
+    Email VARCHAR(100)
+);
+
+CREATE TABLE Productos(
+    ProductoId INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY(START WITH 1,INCREMENT BY 1),
+    Descripcion VARCHAR(50) NOT NULL,
+    Precio DECIMAL(16,2) NOT NULL,
+    Exento DECIMAL(16,2) NOT NULL
+);
+
+CREATE TABLE Facturas(
+    FacturaId INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY(START WITH 1,INCREMENT BY 1),
+    ClienteId INTEGER,
+    NCF CHAR(19) NOT NULL,
+    Fecha DATE
+);
+
+CREATE TABLE FacturaDetalle
+(
+    ProductoId INTEGER,
+    FacturaId INTEGER,
+    Precio DECIMAL(16,2),
+    Cantidad INTEGER,
+    PRIMARY KEY(ProductoId,FacturaId)
+);
+
+ALTER TABLE Facturas
+ADD FOREIGN KEY (ClienteId)
+REFERENCES Clientes(ClienteId);
+
+ALTER TABLE FacturaDetalle
+ADD FOREIGN KEY (ProductoId)
+REFERENCES Productos(ProductoId);
+
+ALTER TABLE FacturaDetalle
+ADD FOREIGN KEY (FacturaId)
+REFERENCES Facturas(FacturaId);
