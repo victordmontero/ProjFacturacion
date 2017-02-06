@@ -9,18 +9,18 @@ import javax.swing.JFrame;
  *
  * @author Phenom
  */
-public abstract class Vista extends JFrame{
+public abstract class Vista<C extends Controlador> extends JFrame{
     /**
      * Referencia al controlador a la cual esta vista
      * esta asociada.
      */
-    private Controlador controlador;
+    private C controlador;
 
-    public Controlador getControlador() {
+    public C getControlador() {
         return controlador;
     }
 
-    public void setControlador(Controlador controlador) {
+    public void setControlador(C controlador) {
         this.controlador = controlador;
     }
     

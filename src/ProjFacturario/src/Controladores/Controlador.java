@@ -9,18 +9,18 @@ import Vistas.Vista;
  *
  * @author 20151903
  */
-public abstract class Controlador {
+public abstract class Controlador<V extends Vista> {
 
     /**
      * Vista asociada a este controlador
      */
-    Vista Vista;
+    V Vista;
     
-    public Vista getVista() {
+    public V getVista() {
         return Vista;
     }
 
-    public void setVista(Vista Vista) {
+    public void setVista(V Vista) {
         this.Vista = Vista;
     }
 

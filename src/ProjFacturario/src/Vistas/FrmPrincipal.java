@@ -5,11 +5,15 @@
  */
 package Vistas;
 
+import Controladores.Controlador;
+import Controladores.PrincipalControlador;
+import javafx.application.Application;
+
 /**
  *
  * @author Phenom
  */
-public class FrmPrincipal extends Vista {
+public class FrmPrincipal extends Vista<PrincipalControlador> {
 
     /**
      * Creates new form FrmPrincipal
@@ -27,7 +31,52 @@ public class FrmPrincipal extends Vista {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        btnSalir = new javax.swing.JMenuItem();
+        mnConsultas = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        btnAcerca = new javax.swing.JMenuItem();
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jMenu3.setText("Archivo");
+
+        btnSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        jMenu3.add(btnSalir);
+
+        jMenuBar2.add(jMenu3);
+
+        mnConsultas.setText("Consultas");
+        jMenuBar2.add(mnConsultas);
+
+        jMenu4.setText("Mantenimientos");
+        jMenuBar2.add(jMenu4);
+
+        jMenu5.setText("Ayuda");
+
+        btnAcerca.setText("Acerca");
+        jMenu5.add(btnAcerca);
+
+        jMenuBar2.add(jMenu5);
+
+        setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -37,11 +86,15 @@ public class FrmPrincipal extends Vista {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 279, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +132,15 @@ public class FrmPrincipal extends Vista {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem btnAcerca;
+    private javax.swing.JMenuItem btnSalir;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenu mnConsultas;
     // End of variables declaration//GEN-END:variables
 }
