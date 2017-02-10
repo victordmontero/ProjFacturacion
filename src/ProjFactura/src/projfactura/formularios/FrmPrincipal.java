@@ -3,17 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas;
+package projfactura.formularios;
 
-import Controladores.Controlador;
-import Controladores.PrincipalControlador;
 import javafx.application.Application;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Phenom
  */
-public class FrmPrincipal extends Vista<PrincipalControlador> {
+public class FrmPrincipal extends JFrame {
 
     /**
      * Creates new form FrmPrincipal
@@ -37,8 +36,14 @@ public class FrmPrincipal extends Vista<PrincipalControlador> {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         btnSalir = new javax.swing.JMenuItem();
-        mnConsultas = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
+        mnProductos = new javax.swing.JMenu();
+        ConsultaClientes = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        MantProductos = new javax.swing.JMenu();
+        ConsultaCliente = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         btnAcerca = new javax.swing.JMenuItem();
 
@@ -63,11 +68,51 @@ public class FrmPrincipal extends Vista<PrincipalControlador> {
 
         jMenuBar2.add(jMenu3);
 
-        mnConsultas.setText("Consultas");
-        jMenuBar2.add(mnConsultas);
+        mnProductos.setText("Consultas");
 
-        jMenu4.setText("Mantenimientos");
-        jMenuBar2.add(jMenu4);
+        ConsultaClientes.setText("Clientes");
+        ConsultaClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConsultaClientesActionPerformed(evt);
+            }
+        });
+        mnProductos.add(ConsultaClientes);
+
+        jMenuItem2.setText("Facturas");
+        mnProductos.add(jMenuItem2);
+
+        jMenuItem3.setText("Productos");
+        mnProductos.add(jMenuItem3);
+
+        jMenuBar2.add(mnProductos);
+
+        MantProductos.setText("Mantenimientos");
+
+        ConsultaCliente.setText("Clientes");
+        ConsultaCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConsultaClienteActionPerformed(evt);
+            }
+        });
+        MantProductos.add(ConsultaCliente);
+
+        jMenuItem4.setText("Facturas");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        MantProductos.add(jMenuItem4);
+
+        jMenuItem5.setText("Productos");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        MantProductos.add(jMenuItem5);
+
+        jMenuBar2.add(MantProductos);
 
         jMenu5.setText("Ayuda");
 
@@ -95,6 +140,22 @@ public class FrmPrincipal extends Vista<PrincipalControlador> {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void ConsultaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaClienteActionPerformed
+        
+    }//GEN-LAST:event_ConsultaClienteActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void ConsultaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaClientesActionPerformed
+        new FrmConsultaCliente().setVisible(true);
+    }//GEN-LAST:event_ConsultaClientesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,15 +193,21 @@ public class FrmPrincipal extends Vista<PrincipalControlador> {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem ConsultaCliente;
+    private javax.swing.JMenuItem ConsultaClientes;
+    private javax.swing.JMenu MantProductos;
     private javax.swing.JMenuItem btnAcerca;
     private javax.swing.JMenuItem btnSalir;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenu mnConsultas;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenu mnProductos;
     // End of variables declaration//GEN-END:variables
 }
