@@ -6,13 +6,13 @@
 package projfactura.formularios.mantenimientos;
 
 import java.text.SimpleDateFormat;
-import java.util.AbstractMap.SimpleEntry;
 import java.util.*;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import projfactura.Modelos.Cliente;
-import projfactura.Modelos.FacturaDetalle;
-import projfactura.Modelos.Producto;
+import projfactura.Modelos.*;
 import projfactura.Repositorios.*;
+import renderer.ClienteCbRenderer;
+import renderer.ProductoCbRenderer;
 
 /**
  *
@@ -25,11 +25,11 @@ public class FrmFacturas extends javax.swing.JFrame {
     RepositorioProductos productoRepo;
     RepositorioFacturaDetalle facturaDetalleRepo;
     Vector<String> columnas;
-    ArrayList<FacturaDetalle> tempList;
+    ArrayList<ProductoMaster> tempList;
 
     public FrmFacturas() {
         initComponents();
-        
+
         clienteRepo = new RepositorioClientes();
         facturaRepo = new RepositorioFacturas();
         productoRepo = new RepositorioProductos();
@@ -38,9 +38,13 @@ public class FrmFacturas extends javax.swing.JFrame {
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy hh:mm:ss a");
         txtFecha.setText(sdf.format(date));
+
+        columnas = new Vector<>();
         columnas.add("Descripcion");
         columnas.add("Precio");
         columnas.add("Cantidad");
+        tempList = new ArrayList<>();
+
         CargarCb();
         CrearTabla();
     }
@@ -74,6 +78,8 @@ public class FrmFacturas extends javax.swing.JFrame {
 
         jLabel1.setText("Cliente");
 
+        cbCliente.setRenderer(new ClienteCbRenderer());
+
         jLabel2.setText("NCF");
 
         jLabel3.setText("Fecha");
@@ -92,6 +98,8 @@ public class FrmFacturas extends javax.swing.JFrame {
         });
 
         btnEliminarProducto.setText("x");
+
+        cbProducto.setRenderer(new ProductoCbRenderer());
 
         tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -123,14 +131,14 @@ public class FrmFacturas extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(cbCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtNCF, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtFecha))))
+                                .addComponent(txtFecha))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cbCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAgregar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -181,13 +189,19 @@ public class FrmFacturas extends javax.swing.JFrame {
 
     private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
         try {
-            if (cbProducto.getSelectedIndex() > 0) {
-                FacturaDetalle fd = new FacturaDetalle();
-                fd.setCantidad(Math.abs((int)numCantidad.getValue()));
-                fd.setPrecio(fd.Cantidad*);
-                this.tempList.add(facturaDetalle);
+            if (cbProducto.getSelectedIndex() > -1) {
+                ProductoMaster pm = new ProductoMaster();
+
+                Producto p = (Producto) cbProducto.getSelectedItem();
+                pm.setDescripcion(p.Descripcion);
+                pm.setCantidad((int) numCantidad.getValue());
+                pm.setPrecio(pm.getCantidad() * p.Precio);
+
+                this.tempList.add(pm);
+                CrearTabla();
             }
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "No se pudo agregar");
         }
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
 
@@ -231,8 +245,8 @@ public class FrmFacturas extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarProducto;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEliminarProducto;
-    private javax.swing.JComboBox<String> cbCliente;
-    private javax.swing.JComboBox<String> cbProducto;
+    private javax.swing.JComboBox<Cliente> cbCliente;
+    private javax.swing.JComboBox<Producto> cbProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -248,19 +262,18 @@ public class FrmFacturas extends javax.swing.JFrame {
         ArrayList<Cliente> c = clienteRepo.Obtener();
         ArrayList<Producto> p = productoRepo.Obtener();
         for (int i = 0; i < c.size(); i++) {
-            cbCliente.addItem(new SimpleEntry<Integer, String>(c.get(i).ClienteId, c.get(i).Nombre));
+            cbCliente.addItem(c.get(i));
         }
-        
+
         for (int i = 0; i < p.size(); i++) {
-            cbProducto.addItem(new SimpleEntry<Integer, String>(p.get(i).ProductoId, p.get(i).Descripcion));
+            cbProducto.addItem(p.get(i));
         }
 
     }
 
     private void CrearTabla() {
-        Vector<FacturaDetalle> datos = new Vector<>(tempList);
+        Vector<ProductoMaster> datos = new Vector<>(tempList);
         this.tblProductos.setModel(new DefaultTableModel(datos, columnas));
-        
-        
+
     }
 }

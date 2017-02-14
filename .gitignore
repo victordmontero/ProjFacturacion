@@ -12,3 +12,5 @@
 hs_err_pid*
 /build/
 build/
+/src/ProjFactura/nbproject/private/
+/src/ProjFactura/dist/

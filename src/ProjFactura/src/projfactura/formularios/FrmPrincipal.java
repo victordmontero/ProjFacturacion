@@ -11,6 +11,7 @@ import projfactura.formularios.consultas.FrmConsultaProductos;
 import javafx.application.Application;
 import javax.swing.JFrame;
 import projfactura.formularios.mantenimientos.FrmClientes;
+import projfactura.formularios.mantenimientos.FrmFacturas;
 import projfactura.formularios.mantenimientos.FrmProductos;
 
 /**
@@ -46,9 +47,9 @@ public class FrmPrincipal extends JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         MantProductos = new javax.swing.JMenu();
-        ConsultaCliente = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        MantenimientoMenu = new javax.swing.JMenuItem();
+        MantenimientoClientes = new javax.swing.JMenuItem();
+        MantenimientoFacturas = new javax.swing.JMenuItem();
+        MantenimientoProductos = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         btnAcerca = new javax.swing.JMenuItem();
 
@@ -103,29 +104,29 @@ public class FrmPrincipal extends JFrame {
 
         MantProductos.setText("Mantenimientos");
 
-        ConsultaCliente.setText("Clientes");
-        ConsultaCliente.addActionListener(new java.awt.event.ActionListener() {
+        MantenimientoClientes.setText("Clientes");
+        MantenimientoClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConsultaClienteActionPerformed(evt);
+                MantenimientoClientesActionPerformed(evt);
             }
         });
-        MantProductos.add(ConsultaCliente);
+        MantProductos.add(MantenimientoClientes);
 
-        jMenuItem4.setText("Facturas");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        MantenimientoFacturas.setText("Facturas");
+        MantenimientoFacturas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                MantenimientoFacturasActionPerformed(evt);
             }
         });
-        MantProductos.add(jMenuItem4);
+        MantProductos.add(MantenimientoFacturas);
 
-        MantenimientoMenu.setText("Productos");
-        MantenimientoMenu.addActionListener(new java.awt.event.ActionListener() {
+        MantenimientoProductos.setText("Productos");
+        MantenimientoProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MantenimientoMenuActionPerformed(evt);
+                MantenimientoProductosActionPerformed(evt);
             }
         });
-        MantProductos.add(MantenimientoMenu);
+        MantProductos.add(MantenimientoProductos);
 
         jMenuBar2.add(MantProductos);
 
@@ -156,17 +157,17 @@ public class FrmPrincipal extends JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void ConsultaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaClienteActionPerformed
+    private void MantenimientoClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MantenimientoClientesActionPerformed
         new FrmClientes().setVisible(true);
-    }//GEN-LAST:event_ConsultaClienteActionPerformed
+    }//GEN-LAST:event_MantenimientoClientesActionPerformed
 
-    private void MantenimientoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MantenimientoMenuActionPerformed
+    private void MantenimientoProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MantenimientoProductosActionPerformed
         new FrmProductos().setVisible(true);
-    }//GEN-LAST:event_MantenimientoMenuActionPerformed
+    }//GEN-LAST:event_MantenimientoProductosActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    private void MantenimientoFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MantenimientoFacturasActionPerformed
+        new FrmFacturas().setVisible(true);
+    }//GEN-LAST:event_MantenimientoFacturasActionPerformed
 
     private void ConsultaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaClientesActionPerformed
         new FrmConsultaClientes().setVisible(true);
@@ -216,10 +217,11 @@ public class FrmPrincipal extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem ConsultaCliente;
     private javax.swing.JMenuItem ConsultaClientes;
     private javax.swing.JMenu MantProductos;
-    private javax.swing.JMenuItem MantenimientoMenu;
+    private javax.swing.JMenuItem MantenimientoClientes;
+    private javax.swing.JMenuItem MantenimientoFacturas;
+    private javax.swing.JMenuItem MantenimientoProductos;
     private javax.swing.JMenuItem btnAcerca;
     private javax.swing.JMenuItem btnSalir;
     private javax.swing.JMenu jMenu1;
@@ -230,7 +232,6 @@ public class FrmPrincipal extends JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenu mnProductos;
     // End of variables declaration//GEN-END:variables
 }
